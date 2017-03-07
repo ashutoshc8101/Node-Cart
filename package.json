@@ -1,0 +1,14 @@
+{
+  "name": "node-cart",
+  "version": "1.0.0",
+  "description": "This is shopping cart app created by dromestrome in Node js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dromestrome",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
