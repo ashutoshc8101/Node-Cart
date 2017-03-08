@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
+    <style>
+        body{
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<% include partials/navbar.ejs %>
+<div class="container">
+  <div class="row">
+
+  <div class=" col-sm-12 col-xs-12 col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Products in your Cart</div>
+      <div class="panel-body">
+        <% if(products){ %>
+        <% for(i=0;i<products.length;i++){ %>
+        <div class="well well-sm">
+          <a href="/product?id=<%= products[i]._id%>"><%= products[i].Title %></a>
+          <a href="/removeProduct?id=<%= products[i]._id %>" style="float:right;color:#000;font-weight: 800; text-decoration:none;">&times;</a>
+        </div>
+        <% } } else{ %>
+          <div class="well well-sm">Nothing here.</div>
+
+       <div class="well well-sm">
+          <a href="/">Add Something to cart</a>
+       </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-xs-12 col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Total Amount
+      </div>
+      <div class="panel-body">
+        <% if(products){
+          var total = 0;
+          for(i=0;i < products.length;i++){ total += products[i].Price  %>
+          <p><%= products[i].Title %> : <b> $ <%= products[i].Price%></b></p>
+        <%} %> <p>Total : <b> $<%= total%></b></p>
+        <a href="/checkout?id=<%= req.user._id%>" class="btn btn-primary">Checkout</a>
+        <% }else{ %>
+            <p><b>Nothing here</b></p>
+            <a href="/checkout?id=<%= req.user._id%>" class="btn btn-primary disabled">Checkout</a>
+          <% } %>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
