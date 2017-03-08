@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body{
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<% include partials/navbar.ejs %>
+<div class="container">
+<div class="col-lg-4 col-md-4 col-sm-12 com-xs-12" style="padding:20px 20px; box-sizing: border-box">
+<div class="thumbnail">
+  <img src="<%= product.Image %>" width="100%" />
+  <div class="caption">
+  <h1 align="center"><%= product.Title %></h1>
+  </div>
+</div>
+</div>
+<div class="col-lg-8 col-md-8 col-sm-12 com-xs-12" style="padding:20px 20px; box-sizing: border-box">
+  <h1 align="center"><%= product.Title %></h1>
+  <h3>$<%= product.Price%>/-</h3>
+  <a  href="/addToCart?id=<%= product._id %>" class="btn btn-warning">Add to cart</a>
+  <h3>Description</h3>
+  <p><%= product.Description %></p>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

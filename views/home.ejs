@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body{
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<% include partials/navbar.ejs %>
+
+<div class="container">
+<div class="row">
+<% for(i=0;i<products.length;i++){ %>
+
+  <div class="col-md-4 col-sm-6">
+  <div class="thumbnail">
+
+    <a href="/product?id=<%= products[i]._id %>"><img src="<%= products[i].Image %>" alt=""></a>
+
+    <div class="caption">
+
+        <h4><a href="/product?id=<%= products[i]._id %>">
+        <%= products[i].Title %></a></h4>
+        <h5>Price: <%= products[i].Price %></h5>
+        <h5>Stock : <% if(products[i].Stock < 5)
+        { %><span style='color: orange'>
+        <%= "Stock running out" %>
+         </span><%} else if(products[i].Stock === 0){%>
+           <span style='color:red'><%= "No Stock Left" %>
+           </span> <% }else{ %><span style='color:green'>
+           <%= "In stock" %></span><% }%></h5>
+        <p><%= products[i].Description %></p>
+    </div>
+    </div>
+    </div>
+
+  <% } %>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
