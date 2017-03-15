@@ -29,9 +29,33 @@ var UserSchema = mongoose.Schema({
   Password : String,
 });
 
-var Cart = mongoose.model("Cart",CartSchema);
+var OrderProductIdSchema = mongoose.Schema({
+  product_id : mongoose.Schema.Types.ObjectId,
+});
 
+var OrderSchema = mongoose.Schema({
+  user_id : mongoose.Schema.Types.ObjectId,
+  transaction_id : String,
+  Reciever_Name : String,
+  Reciever_Email : String,
+  Reciever_Contact : String,
+  Reciever_Address : String,
+  Reciever_PIN : String,
+  Products : [OrderProductIdSchema],
+});
+
+
+
+var transactionSchema = mongoose.Schema({
+  user_id : mongoose.Schema.Types.ObjectId,
+  transaction_id: String,
+  createdAt : String,
+});
+
+var Cart = mongoose.model("Cart",CartSchema);
 var product = mongoose.model("product", mySchema);
 var User = mongoose.model("User",UserSchema);
+var Order = mongoose.model("Order",OrderSchema);
+var Transaction = mongoose.model("Transaction",transactionSchema);
 
-module.exports = [product,User,Cart];
+module.exports = [product,User,Cart,Order,Transaction];

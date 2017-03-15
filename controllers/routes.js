@@ -66,7 +66,7 @@ app.get("/cart",loggedIn,function(req,res){
           products.push(data);
           count++;
           if(count === result.length){
-            console.log(products);
+
             res.render("cart",{'products': products, "req":req});
           }
         });
@@ -84,6 +84,5 @@ app.get("/removeProduct",loggedIn,function(req,res){
   });
 
 });
-
 
 };

@@ -6,6 +6,8 @@ const morgan = require("morgan");
 const product = require("./controllers/database")[0];
 const User = require("./controllers/database")[1];
 const Cart = require("./controllers/database")[2];
+const Order = require("./controllers/database")[3];
+const Transaction = require("./controllers/database")[4];
 const formValidation = require("./controllers/formValidation.js");
 const bodyParser = require('body-parser');
 const flash = require("connect-flash");
@@ -16,6 +18,8 @@ const passport = require("passport");
 const validator = require("express-validator");
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
+const braintree = require("braintree");
+
 const app = express();
 
 // Configuration //
@@ -44,6 +48,13 @@ require("./controllers/routes")(app,product,User,Cart);
 
 require("./controllers/authentication.js")(app,passport, LocalStrategy, User, bcrypt, flash ,formValidation);
 
+// Braintree Payments //
+
+require("./controllers/payment.js")(app,braintree,Cart,product,Order,Transaction);
+
+app.get("*",function(req,res){
+  res.send("404 Not found", 404);
+});
 // Server //
 app.listen(app.get("port"),function(){
   console.log("Listening on port " + app.get("port"));
